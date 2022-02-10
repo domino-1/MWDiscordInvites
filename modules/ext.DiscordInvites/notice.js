@@ -9,11 +9,18 @@
         return this.id.substring(15);
     }).get();
 
-    invites.forEach(element => {
+    invites.forEach(elem => {
         try {
-            invite = OO.ui.infuse( "#discord-invite-" + element );
+            invite = OO.ui.infuse( "#discord-invite-" + elem );
             invite.on( 'click', function() {
-                alert( 'You clicked the invite' + element);
+                OO.ui.confirm( mw.message( 'dcinv-confirm-message', elem ).text() ).done( function ( confirmed ) {
+                    if ( confirmed ) {
+                        window.open('https://discord.com/invite/' + elem + '/login', '_blank');
+                        console.log( 'User clicked "OK"!' );
+                    } else {
+                        console.log( 'User clicked "Cancel" or closed the dialog.' );
+                    }
+                });
             });
         } catch (error) {
             console.warn(error);

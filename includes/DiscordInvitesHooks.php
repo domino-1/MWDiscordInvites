@@ -17,7 +17,7 @@ class DiscordInvitesHooks {
 		$invitecode = $frame->expand( $args[0] );
 		
 		if ( !(is_string($invitecode) and (strlen($invitecode) >= 2)) ) { 	return 	'<strong class="error dcinv-invalid-invite">' . 
-																					wfMessage( "dcinv_error_invalid_invite" )->inContentLanguage()->escaped() . 
+																					wfMessage( "dcinv-error-invalid-invite" )->inContentLanguage()->escaped() . 
 																					'</strong>'; }
 																					
 		$parser->enableOOUI();

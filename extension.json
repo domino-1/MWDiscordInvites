@@ -43,7 +43,9 @@
 				"oojs-ui-core",
 				"oojs-ui-windows"
 			],
-			"messages": [],
+			"messages": [
+				"dcinv-confirm-message"
+			],
 			"styles": [
 				"discordInvites.css"
 			]

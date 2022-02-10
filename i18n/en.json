@@ -5,6 +5,7 @@
 		]
 	},
 	"dcinv-desc": "Provides a parser function for creating Discord server invites.",
-	"dcinv_error_invalid_invite": "Error: Invalid invite code",
-	"dcinv_error_errname": "Error: <error>"
+	"dcinv-error-invalid-invite": "Error: Invalid invite code",
+	"dcinv-confirm-message": "You clicked the invite $1. Are you sure you want to follow that?",
+	"dcinv-error-errname": "Error: <error>"
 }
