@@ -1,5 +1,5 @@
 /*
-*
+* MediaWiki Extension:DiscordInvites
 *
 *
 */
