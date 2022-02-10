@@ -1,0 +1,53 @@
+{
+	"name": "DiscordInvites",
+	"author": [
+		"Domino"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:DiscordInvites",
+	"descriptionmsg": "dcinv-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "parserhook",
+	"version": "0.1",
+	"requires": {
+		"MediaWiki": ">= 1.35.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\DiscordInvites\\": "includes/"
+	},
+	"AutoloadClasses": {
+		"DiscordInvitesHooks": "includes/DiscordInvitesHooks.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "DiscordInvitesHooks::onParserFirstCallInit"
+	},
+	"MessagesDirs": {
+		"DiscordInvites": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"DiscordInvitesMagic": "DiscordInvites.i18n.php"
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "DiscordInvites/resources"
+	},
+	"ResourceModules": {
+		"ext.DiscordInvites": {
+			"localBasePath": "modules/ext.DiscordInvites",
+        	"remoteExtPath": "DiscordInvites/modules/ext.DiscordInvites",
+        	"packageFiles": [
+         		"notice.js"
+        	],
+			"dependencies": [
+				"oojs-ui-core",
+				"oojs-ui-windows"
+			],
+			"messages": [],
+			"styles": [
+				"discordInvites.css"
+			]
+		}
+	},
+	"manifest_version": 2
+}

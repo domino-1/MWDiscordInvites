@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Domino"
+		]
+	},
+	"dcinv-desc": "Extension description message for Special:Version.",
+	"dcinv_error_invalid_invite": "Used as an error message when the invalid invite error occurs.",
+	"dcinv_error_errname": "Used as an error message when the <error>."
+}

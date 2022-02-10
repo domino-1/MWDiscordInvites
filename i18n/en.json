@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Domino"
+		]
+	},
+	"dcinv-desc": "Provides a parser function for creating Discord server invites.",
+	"dcinv_error_invalid_invite": "Error: Invalid invite code",
+	"dcinv_error_errname": "Error: <error>"
+}
