@@ -68,8 +68,9 @@ class DiscordInvitesHooks {
 			'href' => 'https://discord.com'*/
 		] );
 		
+		$parser->addTrackingCategory( 'dcinv-tracking-category-has-invite' );
+		
 		$output = $btn;
-
 		return $parser->insertStripItem( $output, $parser->mStripState );
       
 	}

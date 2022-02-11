@@ -51,5 +51,8 @@
 			]
 		}
 	},
+	"TrackingCategories": [
+		"dcinv-tracking-category-has-invite"
+	],
 	"manifest_version": 2
 }

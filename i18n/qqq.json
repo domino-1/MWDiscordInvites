@@ -7,5 +7,7 @@
 	"dcinv-desc": "Extension description message for Special:Version.",
 	"dcinv-error-invalid-invite": "Used as an error message when the invalid invite error occurs.",
 	"dcinv-confirm-message": "Used as the confirmation message when clicking on invites.",
-	"dcinv-error-errname": "Used as an error message when the <error>."
+	"dcinv-error-errname": "Used as an error message when the <error>.",
+	"dcinv-tracking-category-has-invite": "Tracking category name.",
+	"dcinv-tracking-category-has-invite-desc": "Tracking category description."
 }
