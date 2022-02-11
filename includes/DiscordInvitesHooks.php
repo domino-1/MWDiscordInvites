@@ -17,8 +17,8 @@ class DiscordInvitesHooks {
 		$invitecode = $frame->expand( $args[0] );
 		
 		if ( !(is_string($invitecode) and ctype_alnum($invitecode) and (strlen($invitecode) >= 2)) ) { 	
-			return 	'<strong class="error dcinv-invalid-invite">' . 
-					wfMessage( "dcinv-error-invalid-invite" )->inContentLanguage()->escaped() . '</strong>'; 
+				return 	'<strong class="error dcinv-invalid-invite">' . 
+						wfMessage( "dcinv-error-invalid-invite" )->inContentLanguage()->escaped() . '</strong>'; 
 			}
 																					
 		$parser->enableOOUI();
@@ -58,7 +58,7 @@ class DiscordInvitesHooks {
 	  
 		$btn = new OOUI\ButtonWidget( [
 			'infusable' => true,
-			'id' => "discord-invite-$invitecode",
+			'id' => "discord-invite-unhandled-$invitecode",
 			'label' => $displaytext,
 			'framed' => $btnframe,
 			'flags' => $btnflags,
