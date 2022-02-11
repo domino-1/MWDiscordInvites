@@ -12,23 +12,23 @@ class DiscordInvitesHooks {
 
 	// Render the output of {{#discord:}}.
 	public static function renderDiscord( Parser $parser, PPFrame $frame, array $args ) {
-		if ( !isset($args[0]) ) { return 'tada'; } // returns blank string if invite code is blank
+		if ( !isset($args[0]) ) { return ''; } // returns blank string if invite code is blank
 		
 		$invitecode = $frame->expand( $args[0] );
 		
-		if ( !(is_string($invitecode) and (strlen($invitecode) >= 2)) ) { 	return 	'<strong class="error dcinv-invalid-invite">' . 
-																					wfMessage( "dcinv-error-invalid-invite" )->inContentLanguage()->escaped() . 
-																					'</strong>'; }
+		if ( !(is_string($invitecode) and ctype_alnum($invitecode) and (strlen($invitecode) >= 2)) ) { 	
+			return 	'<strong class="error dcinv-invalid-invite">' . 
+					wfMessage( "dcinv-error-invalid-invite" )->inContentLanguage()->escaped() . '</strong>'; 
+			}
 																					
 		$parser->enableOOUI();
 		$parser->getOutput()->addModules('ext.DiscordInvites');
 		
 		$btnframe = false;
-		$iconmode = false;
 		$btnicon = '';
 		$btnflags = '';
 		
-		if ( isset($args[1]) ) { $displaytext = $frame->expand( $args[1] ); } else { $displaytext = "Join Discord"; }
+		# checks for button or link mode
 		if ( isset($args[2]) ) { 
 				$mode = $frame->expand( $args[2] ); 
 				switch ($mode) {
@@ -36,22 +36,23 @@ class DiscordInvitesHooks {
 						$btnframe = true;
 						$btnclass = 'discord-invite-button';
 						$btnicon = 'discord';
+						$displaytext = isset($args[1]) ? $frame->expand( $args[1] ) : "Join Discord";
 						break;
 					case "link":
 						$btnclass = 'discord-invite-link';
 						$btnflags = 'progressive';
-						break;
-					case "icon":
-						$iconmode = true;
+						$displaytext = isset($args[1]) ? $frame->expand( $args[1] ) : ("https://discord.gg/" . $invitecode);
 						break;
 					default: 	//same as mode: link
 						$btnclasses = 'discord-invite-link';
 						$btnflags = 'progressive';
+						$displaytext = isset($args[1]) ? $frame->expand( $args[1] ) : ("https://discord.gg/" . $invitecode);
 						break;
 				}
 			} else { 	//same as mode: link
 				$btnclass = 'discord-invite-link';
 				$btnflags = 'progressive';
+				$displaytext = isset($args[1]) ? $frame->expand( $args[1] ) : ("https://discord.gg/" . $invitecode);
 			}
 	  
 	  
