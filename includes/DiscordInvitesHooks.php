@@ -1,5 +1,4 @@
 <?php
-//require 'mojang-api.class.php';
 
 class DiscordInvitesHooks {
 	
