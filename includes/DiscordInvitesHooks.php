@@ -1,5 +1,4 @@
 <?php
-
 class DiscordInvitesHooks {
 	
 	// Register any render callbacks with the parser
@@ -15,17 +14,19 @@ class DiscordInvitesHooks {
 		
 		$invitecode = $frame->expand( $args[0] );
 		
-		if ( !(is_string($invitecode) and ctype_alnum($invitecode) and (strlen($invitecode) >= 2)) ) { 	
+		if ( !(is_string($invitecode) and ctype_alnum($invitecode) and (strlen($invitecode) >= 2) and (strlen($invitecode) <= 256)) ) { 	
 				return 	'<strong class="error dcinv-invalid-invite">' . 
 						wfMessage( "dcinv-error-invalid-invite" )->inContentLanguage()->escaped() . '</strong>'; 
 			}
 																					
-		$parser->enableOOUI();
+		$parser->getOutput()->setEnableOOUI( true );
+		OutputPage::setupOOUI();
 		$parser->getOutput()->addModules('ext.DiscordInvites');
 		
 		$btnframe = false;
 		$btnicon = '';
 		$btnflags = '';
+		$btndisabled = false;
 		
 		# checks for button or link mode
 		if ( isset($args[2]) ) { 
@@ -35,17 +36,17 @@ class DiscordInvitesHooks {
 						$btnframe = true;
 						$btnclass = 'discord-invite-button';
 						$btnicon = 'discord';
-						$displaytext = isset($args[1]) ? $frame->expand( $args[1] ) : "Join Discord";
+						$displaytext = (strlen($frame->expand($args[1])) > 0) ? ($frame->expand( $args[1] ) == '-' ? "" : $frame->expand($args[1])) : "Join Discord";
 						break;
 					case "link":
 						$btnclass = 'discord-invite-link';
 						$btnflags = 'progressive';
-						$displaytext = isset($args[1]) ? $frame->expand( $args[1] ) : ("https://discord.gg/" . $invitecode);
+						$displaytext = (strlen($frame->expand($args[1])) > 0) ? $frame->expand( $args[1] ) : ("https://discord.gg/" . $invitecode);
 						break;
 					default: 	//same as mode: link
-						$btnclasses = 'discord-invite-link';
+						$btnclass = 'discord-invite-link';
 						$btnflags = 'progressive';
-						$displaytext = isset($args[1]) ? $frame->expand( $args[1] ) : ("https://discord.gg/" . $invitecode);
+						$displaytext = (isset($args[1]) and (strlen($frame->expand($args[1])) > 0)) ? $frame->expand( $args[1] ) : ("https://discord.gg/" . $invitecode);
 						break;
 				}
 			} else { 	//same as mode: link
@@ -54,17 +55,16 @@ class DiscordInvitesHooks {
 				$displaytext = isset($args[1]) ? $frame->expand( $args[1] ) : ("https://discord.gg/" . $invitecode);
 			}
 	  
-	  
+		$btnid = $btndisabled ? "discord-invite-blocked" : "discord-invite-unhandled-$invitecode";
 		$btn = new OOUI\ButtonWidget( [
 			'infusable' => true,
-			'id' => "discord-invite-unhandled-$invitecode",
+			'id' => $btnid,
 			'label' => $displaytext,
 			'framed' => $btnframe,
 			'flags' => $btnflags,
 			'icon' => $btnicon,
-			'classes' => [ 'discord-invite', $btnclass ]/*,
-			'target' => '_blank',
-			'href' => 'https://discord.com'*/
+			'classes' => [ 'discord-invite', $btnclass ],
+			'disabled' => $btndisabled
 		] );
 		
 		$parser->addTrackingCategory( 'dcinv-tracking-category-has-invite' );

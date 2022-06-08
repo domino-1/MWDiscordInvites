@@ -6,9 +6,19 @@ span.discord-invite.oo-ui-buttonWidget {
     margin: -5px 0 0 0;
 }
 
+.discord-invite.discord-invite-link.oo-ui-buttonElement-frameless {
+    vertical-align: text-bottom;
+}
+
 .discord-invite.discord-invite-link.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button {
-    padding: 6px 0;
-    font-weight: normal ;
+    padding: 0;
+    font-weight: normal;
+    min-height: unset;
+    margin: 0 0 -2.2px 0;
+}
+
+.discord-invite.oo-ui-buttonWidget .oo-ui-labelElement-label {
+    vertical-align: middle;
 }
 
 .discord-invite.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
