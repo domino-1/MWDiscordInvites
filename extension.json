@@ -54,5 +54,30 @@
 	"TrackingCategories": [
 		"dcinv-tracking-category-has-invite"
 	],
+	"config": {
+		"DiscordInvitesBlockedNamespaces" : {
+			"value": {
+				"0": true,
+				"2": true,
+				"6": true
+			},
+			"merge_strategy": "array_plus",
+			"description": "List of namespace numbers to disable discord invites on"
+		},
+		"DiscordInvitesBlockTalk" : {
+			"value": true,
+			"description": "Disable discord invites on talk pages"
+		},
+		"DiscordInvitesExemptPages" : {
+			"value": {
+				"User:Domino": true
+			},
+			"merge_strategy": "array_plus",
+			"description": "List of page titles to disable all safety checks on"
+		}
+	},
+	"ConfigRegistry": {
+		"discordinvites": "GlobalVarConfig::newInstance"
+	},
 	"manifest_version": 2
 }
