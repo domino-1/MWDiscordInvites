@@ -7,7 +7,7 @@ span.discord-invite.oo-ui-buttonWidget {
 }
 
 .discord-invite.discord-invite-link.oo-ui-buttonElement-frameless {
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }
 
 .discord-invite.discord-invite-link.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button {
