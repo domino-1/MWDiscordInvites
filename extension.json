@@ -15,15 +15,24 @@
 		"MediaWiki\\Extension\\DiscordInvites\\": "includes/"
 	},
 	"AutoloadClasses": {
-		"DiscordInvitesHooks": "includes/DiscordInvitesHooks.php"
+		"DiscordInvitesHooks": "includes/DiscordInvitesHooks.php",
+		"SpecialBlockDiscord": "src/SpecialBlockDiscord.php",
+		"SpecialDiscordBlockList": "src/SpecialDiscordBlockList.php",
+		"SpecialAddDiscord": "src/SpecialAddDiscord.php"
 	},
 	"Hooks": {
+		"LoadExtensionSchemaUpdates": "DiscordInvitesHooks::onLoadExtensionSchemaUpdates",
 		"ParserFirstCallInit": "DiscordInvitesHooks::onParserFirstCallInit"
 	},
 	"MessagesDirs": {
 		"DiscordInvites": [
 			"i18n"
 		]
+	},
+	"SpecialPages": {
+		"BlockDiscord": "SpecialBlockDiscord",
+		"DiscordBlockList": "SpecialDiscordBlockList",
+		"AddDiscord": "SpecialAddDiscord"
 	},
 	"ExtensionMessagesFiles": {
 		"DiscordInvitesMagic": "DiscordInvites.i18n.php"
@@ -35,10 +44,10 @@
 	"ResourceModules": {
 		"ext.DiscordInvites": {
 			"localBasePath": "modules/ext.DiscordInvites",
-        	"remoteExtPath": "DiscordInvites/modules/ext.DiscordInvites",
-        	"packageFiles": [
-         		"notice.js"
-        	],
+			"remoteExtPath": "DiscordInvites/modules/ext.DiscordInvites",
+			"packageFiles": [
+				"notice.js"
+			],
 			"dependencies": [
 				"oojs-ui-core",
 				"oojs-ui-windows"
@@ -74,6 +83,10 @@
 			},
 			"merge_strategy": "array_plus",
 			"description": "List of page titles to disable all safety checks on"
+		},
+		"DiscordBotToken" : {
+			"value": -1,
+			"description": "Discord App Developer Token"
 		}
 	},
 	"ConfigRegistry": {

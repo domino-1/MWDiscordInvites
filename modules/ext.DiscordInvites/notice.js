@@ -3,6 +3,8 @@
 *
 *
 */
+    if( typeof deactivateDiscordInvites !== 'undefined' ) { throw "DiscordInvites were deactivated using on-site javascript."; }
+
     console.log('extension discordinvites js active');
 
     var invites = $(" .discord-invite[id^=discord-invite-unhandled-] ").map(function() {
